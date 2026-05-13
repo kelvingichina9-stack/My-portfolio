@@ -1,69 +1,616 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolio Website</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header class="site-header">
-            <div class="container header-inner">
-                <a href="#home" class="brand">MyPortfolio</a>
-                <nav class="main-nav" aria-label="Primary navigation">
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-                <a href="#contact" class="btn btn-primary">Hire Me</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelvin Mwangi - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-gradient-dark {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 py-4 shadow-sm border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">K</span>
+                </div>
+                <span class="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Kelvin Mwangi</span>
             </div>
-        </header>
+            
+            <div class="hidden md:flex space-x-8">
+                <button onclick="scrollToSection('home')" class="font-medium hover:text-blue-600 transition-colors">Home</button>
+                <button onclick="scrollToSection('about')" class="font-medium hover:text-blue-600 transition-colors">About</button>
+                <button onclick="scrollToSection('skills')" class="font-medium hover:text-blue-600 transition-colors">Skills</button>
+                <button onclick="scrollToSection('projects')" class="font-medium hover:text-blue-600 transition-colors">Projects</button>
+                <button onclick="scrollToSection('education')" class="font-medium hover:text-blue-600 transition-colors">Education</button>
+                <button onclick="scrollToSection('contact')" class="font-medium hover:text-blue-600 transition-colors">Contact</button>
+            </div>
+            
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
 
-        <main>
-            <section id="home" class="hero-section">
-                <div class="container hero-inner">
-                    <div class="hero-copy">
-                        <p class="eyebrow">Creative web portfolio</p>
-                        <h1>Designing modern websites that feel polished and perform beautifully.</h1>
-                        <p class="hero-text">I build responsive experiences for startups and small teams, with a focus on clean UI, fast interactions, and strong visual storytelling.</p>
-                        <div class="hero-actions">
-                            <a href="#projects" class="btn btn-primary">View Projects</a>
-                            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+                        Hi, I'm <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Kelvin Mwangi</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-700 dark:text-gray-300 animate-fade-in delay-100">
+                        IT Student & Tech Enthusiast
+                    </h2>
+                    <p class="text-lg mb-8 text-gray-600 dark:text-gray-400 max-w-lg animate-fade-in delay-200">
+                        Passionate about database analysis and networking. I love turning complex problems into simple, beautiful solutions.
+                    </p>
+                    <div class="flex space-x-4 animate-fade-in delay-300">
+                        <button onclick="scrollToSection('projects')" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                            View My Work
+                        </button>
+                        <button onclick="scrollToSection('contact')" class="px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors">
+                            Contact Me
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-up">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-xl"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-56 h-56 md:w-72 md:h-72" />
                         </div>
                     </div>
-                    <div class="hero-image" aria-hidden="true">
-                        <div class="hero-card">
-                            <div class="hero-card-accent"></div>
-                            <div class="hero-card-content">
-                                <span>Featured project</span>
-                                <h2>Brand landing page</h2>
-                                <p>Fast, accessible, and built for conversion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        I'm Kelvin Mwangi, an enthusiastic IT student with a strong passion for database analysis and networking. 
+                        Currently pursuing my studies, I'm constantly seeking opportunities to expand my knowledge and skills in 
+                        the technology field.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        My journey in IT has been filled with curiosity and determination to understand how systems work. 
+                        I enjoy tackling challenging problems and finding efficient solutions that make a real difference.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        When I'm not coding or studying, you'll find me exploring new technologies, contributing to open-source projects, 
+                        or helping fellow students with their technical challenges.
+                    </p>
+                </div>
+                
+                <div class="md:w-1/2 grid grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg card-hover">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-laptop-code text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Database Analysis</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Expertise in data modeling, query optimization, and database design for efficient information systems.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg card-hover">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-network-wired text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Networking</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Strong foundation in network architecture, security, and troubleshooting for reliable communication systems.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg card-hover">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-graduation-cap text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Continuous Learning</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Always staying updated with the latest technologies and industry trends to enhance my skill set.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg card-hover">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-users text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Collaboration</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Excellent team player with strong communication skills and a collaborative approach to problem solving.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My Technical Skills</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-center">Core Competencies</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Database Analysis</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Networking Fundamentals</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Problem Solving</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Data Modeling</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 88%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section id="about" class="section-section">
-                <div class="container">
-                    <h2>About Me</h2>
-                    <p>I’m a frontend developer with a passion for turning ideas into polished digital products using HTML, CSS, and JavaScript.</p>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-center">Technical Proficiencies</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fab fa-microsoft text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">SQL Server</h4>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fas fa-database text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">MySQL</h4>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fas fa-network-wired text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">Network Protocols</h4>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fas fa-server text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">Cisco Networking</h4>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fas fa-chart-line text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">Data Analysis</h4>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                            <div class="text-blue-600 mb-2">
+                                <i class="fas fa-lock text-2xl"></i>
+                            </div>
+                            <h4 class="font-medium">Network Security</h4>
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <section id="projects" class="section-section">
-                <div class="container">
-                    <h2>Projects</h2>
-                    <p>Recent work includes landing pages, interactive dashboards, and portfolio sites designed to look great on every device.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-database text-5xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Database Management System</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            A comprehensive system for managing relational databases with advanced querying capabilities.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">SQL</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">MySQL</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">PHP</span>
+                        </div>
+                        <button class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                            View Details →
+                        </button>
+                    </div>
                 </div>
-            </section>
+                
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-network-wired text-5xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Network Topology Designer</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Interactive tool for designing and visualizing various network topologies with performance metrics.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">Networking</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">Protocols</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">Visualization</span>
+                        </div>
+                        <button class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-5xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Data Analytics Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Interactive dashboard for visualizing business data with real-time analytics and reporting features.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Analytics</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Charts</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Python</span>
+                        </div>
+                        <button class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="contact" class="section-section">
-                <div class="container">
-                    <h2>Contact</h2>
-                    <p>Ready to launch your next project? Let’s connect and make it happen.</p>
+    <!-- Education & Certifications -->
+    <section id="education" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Education & Certifications</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="flex">
+                        <div class="mr-6 flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-600 rounded-full mt-2"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-1.5"></div>
+                        </div>
+                        <div class="pb-8">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Bachelor of Science in Information Technology</h3>
+                                <span class="text-blue-600 font-medium">2022 - Present</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                <strong>University Name</strong> - Currently pursuing degree with focus on database systems and networking.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Relevant coursework includes Database Management Systems, Network Administration, Cybersecurity, and Software Engineering.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="mr-6 flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-600 rounded-full mt-2"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-1.5"></div>
+                        </div>
+                        <div class="pb-8">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Cisco Certified Network Associate (CCNA)</h3>
+                                <span class="text-blue-600 font-medium">2023</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                <strong>Cisco Networking Academy</strong> - Comprehensive certification covering network fundamentals, configuration, and security.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Demonstrated expertise in routing, switching, LAN/WAN technologies, and network troubleshooting.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="mr-6 flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-600 rounded-full mt-2"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-1.5"></div>
+                        </div>
+                        <div class="pb-8">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Microsoft SQL Server Certification</h3>
+                                <span class="text-blue-600 font-medium">2023</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                <strong>Microsoft Learning</strong> - Advanced database management and query optimization skills.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Proficient in T-SQL, database design, performance tuning, and data warehousing concepts.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </main>
-    </body>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-blue-600 dark:text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Email</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">kelvingichina9@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone text-blue-600 dark:text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Phone</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">+254 758 179 087</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Location</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Nairobi, Kenya</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-bold text-lg mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-gray-900 text-gray-400">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                            <span class="text-white font-bold">K</span>
+                        </div>
+                        <span class="font-bold text-xl text-white">Kelvin Mwangi</span>
+                    </div>
+                    <p class="mt-2 text-sm">IT Student | Database Analyst | Network Specialist</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2026 Kelvin Mwangi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Smooth scrolling for navigation links
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate-fade-in, .animate-slide-up').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+        
+        // Form submission handling
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                form.reset();
+            });
+        }
+    </script>
+</body>
 </html>
